@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get "checkbox", to: "docs#checkbox", as: :docs_checkbox
     get "codeblock", to: "docs#codeblock", as: :docs_codeblock
     get "collapsible", to: "docs#collapsible", as: :docs_collapsible
+    get "combo_box", to: "docs#combo_box", as: :docs_combo_box
     get "command", to: "docs#command", as: :docs_command
     get "context_menu", to: "docs#context_menu", as: :docs_context_menu
     get "date_picker", to: "docs#date_picker", as: :docs_date_picker

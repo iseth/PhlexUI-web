@@ -76,4 +76,17 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  Zeitwerk::Registry.loaders.detect { |l| l.tag == "phlex_ui" }.unregister
+  gem_root_path = Pathname.new(Gem.loaded_specs["phlex_ui"].full_gem_path)
+  gem_loader = Zeitwerk::Loader.new
+  gem_loader.push_dir gem_root_path.join("lib")
+  gem_loader.enable_reloading
+  gem_loader.setup
+
+  # 3. Setup a file-system watcher and trigger a reload when a gem file changes.
+  #
+  Listen.to gem_root_path.join("lib"), only: /\.rb$/ do
+    gem_loader.reload
+  end.start
 end
